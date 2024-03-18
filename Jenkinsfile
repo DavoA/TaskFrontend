@@ -22,7 +22,6 @@ pipeline {
 	  def tmp = env.myHash
 	  def mytag = tmp.substring(0, 7)
           docker.withRegistry('https://index.docker.io/v1/', 'docker-pat') {
-            docker.build("parandzem/front")
             docker.image("parandzem/front").push(mytag)
           }
         }
