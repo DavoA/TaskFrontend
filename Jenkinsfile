@@ -16,7 +16,6 @@ pipeline {
           }
         }
       }
-    }
     stage('Give Tag and Push Image') {
       steps {
         def mytag = env.myHash.substring(0, 7)
