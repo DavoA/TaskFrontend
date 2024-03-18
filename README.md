@@ -1,1 +1,1 @@
-forymy task
+fo rymy task
