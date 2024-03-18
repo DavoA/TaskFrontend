@@ -24,6 +24,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/v1/', 'docker-pat') {
             docker.build("parandzem/front")
             docker.image("parandzem/front").push(mytag)
+          }
         }
       }
     }
