@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_COMPOSE_FILE=$(dirname "$0")/docker-compose.yml
+DOCKER_COMPOSE_FILE="TaskDevops/docker-compose.yml"
 
 current_tag=$(grep 'parandzem/front' $DOCKER_COMPOSE_FILE | awk -F ':' '{print $3}' | tr -d '"')
 
@@ -9,7 +9,7 @@ if [ -z "$current_tag" ]; then
     exit 1
 fi
 
-new_tag="$1"
+new_tag="latest"
 
 sed -i "s/parandzem\/front:$current_tag/parandzem\/front:$new_tag/g" $DOCKER_COMPOSE_FILE
 
