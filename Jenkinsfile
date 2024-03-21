@@ -27,5 +27,30 @@ pipeline {
         }
       }
     }
+    stage('Cloning and Changing') {
+      steps {
+	git(
+	  url: "https://github.com/DavoA/TaskDevops.git",
+	  branch: "main",
+	  changelog: true,
+	  poll: true
+	)
+	script {
+          def tmp2 = env.myHash
+	  def mytag2 = tmp2.substring(0, 7)
+	  sh "bash changing_front.sh $mytag2"
+	  sh "cat docker-compose.yml"
+        }
+      }
+    }
+    stage('Commiting and Pushing') {
+      steps {
+	sh "git add ."
+        sh "git commit -m 'changing 2'"
+	withCredentials([gitUsernamePassword(credentialsId: 'github-pat', rnameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+           sh "git push -u origin main"
+        }
+      }
+    }
   }
 }
