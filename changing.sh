@@ -9,7 +9,7 @@ if [ -z "$current_tag" ]; then
     exit 1
 fi
 
-new_tag="latest"
+new_tag="$1"
 
 sed -i "s/parandzem\/front:$current_tag/parandzem\/front:$new_tag/g" $DOCKER_COMPOSE_FILE
 
