@@ -1,1 +1,1 @@
-for gguupppooooooouuuoouujikiujujujukjioiiuoo  task
+for task
