@@ -19,10 +19,11 @@ pipeline {
     stage('Give Tag and Push Image') {
       steps {
         script {
-	  def tmp2 = env.myHash
-	  def mytag2 = tmp2.substring(0, 7)
-	  sh "bash changing_front.sh $mytag2"
-	  sh "cat docker-compose.yml"
+	  def tmp = env.myHash
+	  def mytag = tmp.substring(0, 7)
+          docker.withRegistry('https://index.docker.io/v1/', 'docker-pat') {
+            docker.image("parandzem/front").push(mytag)
+          }
         }
       }
     }
