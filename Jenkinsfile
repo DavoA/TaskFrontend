@@ -1,3 +1,5 @@
+@Library('TaskDevops') _
+
 pipeline {
   agent any
   triggers {
@@ -19,11 +21,7 @@ pipeline {
     stage('Give Tag and Push Image') {
       steps {
         script {
-	  def tmp = env.myHash
-	  def mytag = tmp.substring(0, 7)
-          docker.withRegistry('https://index.docker.io/v1/', 'docker-pat') {
-            docker.image("parandzem/front").push(mytag)
-          }
+	  dockerFunction(env.myHash,'github-pat',"parandzem/front")
         }
       }
     }
